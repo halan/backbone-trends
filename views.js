@@ -30,7 +30,7 @@ var CollectionView = Backbone.View.extend({
       new this.model({model: model}).render().$el.appendTo(this.$el);
     }, this);
     return this;
-  }
+  },
 });
 
 var TrendsView = CollectionView.extend({
@@ -44,6 +44,10 @@ var TrendsView = CollectionView.extend({
 });
 
 var SearchView = CollectionView.extend({
+  initialize: function(){
+    this.collection.on('willSearch', this.renderBase, this);
+    CollectionView.prototype.initialize.call(this);
+  },
   renderBase: function(){ this.$el.html('<a href="#">Voltar</a>'); },
   model: TweetView
 })

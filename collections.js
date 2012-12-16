@@ -18,6 +18,9 @@ var SearchTweets = TwitterAPI.extend({
   baseUrl: 'http://search.twitter.com/',
   resourceUrl: 'search.json',
   parse: function(response) { return response.results; },
-  search: function(term) { return this.fetch({data: {q: term}}); }
+  search: function(term) {
+    this.trigger('willSearch');
+    return this.fetch({data: {q: term}});
+  }
 })
 
