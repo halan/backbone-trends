@@ -48,3 +48,8 @@ var SearchView = CollectionView.extend({
   model: TweetView
 })
 
+var AppView = Backbone.View.extend({
+  render: function(view){
+    this.$el.html(view.render().$el);
+  }
+})

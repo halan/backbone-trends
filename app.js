@@ -11,21 +11,17 @@ var app = new (Backbone.Router.extend({
   },
 
   start: function(el){
-    this.$el = $(el);
+    this.appView = new AppView({el: el});
     Backbone.history.start();
   },
 
-  show: function(view){
-    this.$el.html(view.render().$el);
-  },
-
   index: function(){
-    this.show(this.trendsView);
+    this.appView.render(this.trendsView);
   },
 
   trend: function(query){
     this.searcher.search(query);
-    this.show(this.searchView);
+    this.appView.render(this.searchView);
   }
 }))();
 
